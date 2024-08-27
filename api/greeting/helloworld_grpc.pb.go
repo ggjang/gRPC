@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: greeting/helloworld.proto
 
-package api
+package exampale
 
 import (
 	context "context"
@@ -19,100 +19,90 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	GreetingService_HelloWorld_FullMethodName = "/api.GreetingService/HelloWorld"
+	ExampleService_SayHello_FullMethodName = "/example.ExampleService/SayHello"
 )
 
-// GreetingServiceClient is the client API for GreetingService service.
+// ExampleServiceClient is the client API for ExampleService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-//
-// 서비스 정의
-type GreetingServiceClient interface {
-	// RPC methods 정의
-	// a. HealthCheck
-	// CheckRequest를 받고 CheckResponse를 반환한다.
-	HelloWorld(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+type ExampleServiceClient interface {
+	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
 }
 
-type greetingServiceClient struct {
+type exampleServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGreetingServiceClient(cc grpc.ClientConnInterface) GreetingServiceClient {
-	return &greetingServiceClient{cc}
+func NewExampleServiceClient(cc grpc.ClientConnInterface) ExampleServiceClient {
+	return &exampleServiceClient{cc}
 }
 
-func (c *greetingServiceClient) HelloWorld(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
+func (c *exampleServiceClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Response)
-	err := c.cc.Invoke(ctx, GreetingService_HelloWorld_FullMethodName, in, out, cOpts...)
+	out := new(HelloResponse)
+	err := c.cc.Invoke(ctx, ExampleService_SayHello_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GreetingServiceServer is the server API for GreetingService service.
-// All implementations must embed UnimplementedGreetingServiceServer
+// ExampleServiceServer is the server API for ExampleService service.
+// All implementations must embed UnimplementedExampleServiceServer
 // for forward compatibility
-//
-// 서비스 정의
-type GreetingServiceServer interface {
-	// RPC methods 정의
-	// a. HealthCheck
-	// CheckRequest를 받고 CheckResponse를 반환한다.
-	HelloWorld(context.Context, *Request) (*Response, error)
-	mustEmbedUnimplementedGreetingServiceServer()
+type ExampleServiceServer interface {
+	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
+	mustEmbedUnimplementedExampleServiceServer()
 }
 
-// UnimplementedGreetingServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedGreetingServiceServer struct {
+// UnimplementedExampleServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedExampleServiceServer struct {
 }
 
-func (UnimplementedGreetingServiceServer) HelloWorld(context.Context, *Request) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HelloWorld not implemented")
+func (UnimplementedExampleServiceServer) SayHello(context.Context, *HelloRequest) (*HelloResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
 }
-func (UnimplementedGreetingServiceServer) mustEmbedUnimplementedGreetingServiceServer() {}
+func (UnimplementedExampleServiceServer) mustEmbedUnimplementedExampleServiceServer() {}
 
-// UnsafeGreetingServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GreetingServiceServer will
+// UnsafeExampleServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ExampleServiceServer will
 // result in compilation errors.
-type UnsafeGreetingServiceServer interface {
-	mustEmbedUnimplementedGreetingServiceServer()
+type UnsafeExampleServiceServer interface {
+	mustEmbedUnimplementedExampleServiceServer()
 }
 
-func RegisterGreetingServiceServer(s grpc.ServiceRegistrar, srv GreetingServiceServer) {
-	s.RegisterService(&GreetingService_ServiceDesc, srv)
+func RegisterExampleServiceServer(s grpc.ServiceRegistrar, srv ExampleServiceServer) {
+	s.RegisterService(&ExampleService_ServiceDesc, srv)
 }
 
-func _GreetingService_HelloWorld_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+func _ExampleService_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GreetingServiceServer).HelloWorld(ctx, in)
+		return srv.(ExampleServiceServer).SayHello(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GreetingService_HelloWorld_FullMethodName,
+		FullMethod: ExampleService_SayHello_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreetingServiceServer).HelloWorld(ctx, req.(*Request))
+		return srv.(ExampleServiceServer).SayHello(ctx, req.(*HelloRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GreetingService_ServiceDesc is the grpc.ServiceDesc for GreetingService service.
+// ExampleService_ServiceDesc is the grpc.ServiceDesc for ExampleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GreetingService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.GreetingService",
-	HandlerType: (*GreetingServiceServer)(nil),
+var ExampleService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "example.ExampleService",
+	HandlerType: (*ExampleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "HelloWorld",
-			Handler:    _GreetingService_HelloWorld_Handler,
+			MethodName: "SayHello",
+			Handler:    _ExampleService_SayHello_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

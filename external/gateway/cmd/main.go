@@ -30,7 +30,7 @@ func main() {
 		greetingSvc := newGreetingServiceServer()
 
 		grpcServer := grpc.NewServer()
-		pb.RegisterGreetingServiceServer(grpcServer, greetingSvc)
+		pb.RegisterExampleServiceServer(grpcServer, greetingSvc)
 
 		grpcServer.Serve(grpcListen)
 	}()
@@ -38,7 +38,7 @@ func main() {
 	go func() {
 		defer wg.Done()
 		mux := runtime.NewServeMux()
-		if err := pb.RegisterGreetingServiceHandlerFromEndpoint(ctx, mux, grpcAddress, []grpc.DialOption{grpc.WithInsecure()}); err != nil {
+		if err := pb.RegisterExampleServiceHandlerFromEndpoint(ctx, mux, grpcAddress, []grpc.DialOption{grpc.WithInsecure()}); err != nil {
 			log.Fatal(err)
 		}
 		gwServer := &http.Server{
