@@ -1,5 +1,9 @@
 version: v1
 
+managed:
+  enabled : true
+  java_package_prefix: "greeting"
+
 plugins:
   - name: go
     out: .
@@ -10,3 +14,9 @@ plugins:
   - name: grpc-gateway
     out: .
     opt: paths=source_relative
+  # python
+  - plugin: buf.build/grpc/python:v1.66.0
+    out: .
+  # dependencies
+  - plugin: buf.build/protocolbuffers/python:v27.3
+    out: .
