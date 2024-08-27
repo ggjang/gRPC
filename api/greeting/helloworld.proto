@@ -1,28 +1,19 @@
 syntax = "proto3"; // language version
 
-package api; // package 이름
+package example; // package 이름
 
-option go_package = "ggjang/grpc/demo/api/"; // 실제 배포시 적용 될 경로
+option go_package = "/api/exampale"; // 실제 배포시 적용 될 경로
+option java_package = "com.example.grpc";
+option java_outer_classname = "ExampleProto";
 
-// gRPC 서비스에 대한 HTTP 엔드포인트를 정의하는데 필요한 import
-import "google/api/annotations.proto"; 
-
-// 서비스 정의
-service GreetingService {
-		// RPC methods 정의
-		// a. HealthCheck
-		// CheckRequest를 받고 CheckResponse를 반환한다.
-    rpc HelloWorld (Request) returns (Response) {
-		    // Option으로 HTTP 엔드포인트를 정의
-		    // GET : /helloworld
-        option (google.api.http) = {
-            get: "/helloworld"
-        };
-    }
+service ExampleService {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
 }
 
-message Request {}
+message HelloRequest {
+  string name = 1;
+}
 
-message Response {
-    string messgae = 1;
+message HelloResponse {
+  string message = 1;
 }
