@@ -2,11 +2,11 @@
 // source: greeting/helloworld.proto
 
 /*
-Package exampale is a reverse proxy.
+Package example is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package exampale
+package example
 
 import (
 	"context"

@@ -2,12 +2,12 @@ syntax = "proto3"; // language version
 
 package example; // package 이름
 
-option go_package = "/api/exampale"; // 실제 배포시 적용 될 경로
+option go_package = "/api/example"; // 실제 배포시 적용 될 경로
 option java_package = "com.example.grpc";
 option java_outer_classname = "ExampleProto";
 
 service ExampleService {
-  rpc SayHello (HelloRequest) returns (HelloResponse);
+  rpc SayHello (HelloRequest) returns (HelloResponse){};
 }
 
 message HelloRequest {

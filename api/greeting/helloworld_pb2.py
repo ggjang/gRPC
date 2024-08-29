@@ -24,18 +24,18 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19greeting/helloworld.proto\x12\x07\x65xample\"\"\n\x0cHelloRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\")\n\rHelloResponse\x12\x18\n\x07message\x18\x01 \x01(\tR\x07message2K\n\x0e\x45xampleService\x12\x39\n\x08SayHello\x12\x15.example.HelloRequest\x1a\x16.example.HelloResponseBn\n\x10greeting.exampleB\x0fHelloworldProtoP\x01Z\r/api/exampale\xa2\x02\x03\x45XX\xaa\x02\x07\x45xample\xca\x02\x07\x45xample\xe2\x02\x13\x45xample\\GPBMetadata\xea\x02\x07\x45xampleb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19greeting/helloworld.proto\x12\x07\x65xample\"\"\n\x0cHelloRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\")\n\rHelloResponse\x12\x18\n\x07message\x18\x01 \x01(\tR\x07message2M\n\x0e\x45xampleService\x12;\n\x08SayHello\x12\x15.example.HelloRequest\x1a\x16.example.HelloResponse\"\x00\x42m\n\x10greeting.exampleB\x0fHelloworldProtoP\x01Z\x0c/api/example\xa2\x02\x03\x45XX\xaa\x02\x07\x45xample\xca\x02\x07\x45xample\xe2\x02\x13\x45xample\\GPBMetadata\xea\x02\x07\x45xampleb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'greeting.helloworld_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\020greeting.exampleB\017HelloworldProtoP\001Z\r/api/exampale\242\002\003EXX\252\002\007Example\312\002\007Example\342\002\023Example\\GPBMetadata\352\002\007Example'
+  _globals['DESCRIPTOR']._serialized_options = b'\n\020greeting.exampleB\017HelloworldProtoP\001Z\014/api/example\242\002\003EXX\252\002\007Example\312\002\007Example\342\002\023Example\\GPBMetadata\352\002\007Example'
   _globals['_HELLOREQUEST']._serialized_start=38
   _globals['_HELLOREQUEST']._serialized_end=72
   _globals['_HELLORESPONSE']._serialized_start=74
   _globals['_HELLORESPONSE']._serialized_end=115
   _globals['_EXAMPLESERVICE']._serialized_start=117
-  _globals['_EXAMPLESERVICE']._serialized_end=192
+  _globals['_EXAMPLESERVICE']._serialized_end=194
 # @@protoc_insertion_point(module_scope)

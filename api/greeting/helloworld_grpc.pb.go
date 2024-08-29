@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: greeting/helloworld.proto
 
-package exampale
+package example
 
 import (
 	context "context"
